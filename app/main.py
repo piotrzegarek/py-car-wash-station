@@ -25,14 +25,15 @@ class CarWashStation:
         self.count_of_ratings = count_of_ratings
 
     def serve_cars(self, cars_list: List[Car]) -> float:
-        """Washed list of carts and returns income."""
+        """Washes list of cars and returns income."""
         return sum(self.wash_single_car(car) for car in cars_list)
 
     def rate_service(self, rating: int) -> None:
         """Adds new rating and calculates new average and updates count."""
-        new_rates = (self.average_rating * self.count_of_ratings) + rating
+        rates_sum = self.average_rating * self.count_of_ratings
+        new_rates_sum = rates_sum + rating
         self.count_of_ratings += 1
-        self.average_rating = round(new_rates / self.count_of_ratings, 1)
+        self.average_rating = round(new_rates_sum / self.count_of_ratings, 1)
 
     def wash_single_car(self, car: Car) -> float:
         """Cleans car if wash power is greater than clean mark."""
